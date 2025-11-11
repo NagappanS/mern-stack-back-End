@@ -61,8 +61,8 @@ app.get("/", (req, res) => {
   const clientBuildPath = path.join(__dirname, "../Front-End/client/build");
   app.use(express.static(clientBuildPath));
 
-  app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  app.get('*', (req, res) => {
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
   });
 
 app.listen(PORT, () => {
