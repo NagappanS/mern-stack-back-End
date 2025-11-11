@@ -58,14 +58,12 @@ app.get("/", (req, res) => {
 });
 
 // -------------------- SERVE FRONTEND IN PRODUCTION --------------------
-if (process.env.NODE_ENV === "production") {
   const clientBuildPath = path.join(__dirname, "../Front-End/client/build");
   app.use(express.static(clientBuildPath));
 
   app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
   });
-}
 
 app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
