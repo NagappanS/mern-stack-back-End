@@ -10,6 +10,7 @@ import Admin from "./routes/Admin.js";
 import Delivery from "./routes/DeliverymenRoutes.js";
 import Stripe from "stripe";
 import path from "path";
+import { join } from "path";
 import { fileURLToPath } from "url";
 
 dotenv.config();
@@ -58,12 +59,13 @@ app.get("/", (req, res) => {
 });
 
 // -------------------- SERVE FRONTEND IN PRODUCTION --------------------
-  const clientBuildPath = path.join(__dirname, "../Front-End/client/build");
-  app.use(express.static(clientBuildPath));
+const clientBuildPath = join(__dirname, "../Front-End/client/build");
+app.use(express.static(clientBuildPath));
 
-  app.get('*', (req, res) => {
-  res.sendFile(path.join(clientBuildPath, 'index.html'));
-  });
+// ✅ Works safely on Render and all Express versions
+app.get("*", function (req, res) {
+  res.sendFile(join(clientBuildPath, "index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
