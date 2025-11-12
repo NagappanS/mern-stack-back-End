@@ -63,7 +63,7 @@ const clientBuildPath = join(__dirname, "../Front-End/client/build");
 app.use(express.static(clientBuildPath));
 
 // ✅ Works safely on Render and all Express versions
-app.get("*", function (req, res) {
+app.get("/.*/", function (req, res) {
   res.sendFile(join(clientBuildPath, "index.html"));
 });
 
