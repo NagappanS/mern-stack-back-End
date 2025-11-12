@@ -10,7 +10,6 @@ import Admin from "./routes/Admin.js";
 import Delivery from "./routes/DeliverymenRoutes.js";
 import Stripe from "stripe";
 import path from "path";
-import { join } from "path";
 import { fileURLToPath } from "url";
 
 dotenv.config();
@@ -58,14 +57,6 @@ app.get("/", (req, res) => {
     res.send("🍔 Food Delivery API Running 🚀");
 });
 
-// -------------------- SERVE FRONTEND IN PRODUCTION --------------------
-const clientBuildPath = join(__dirname, "../Front-End/client/build");
-app.use(express.static(clientBuildPath));
-
-// ✅ Works safely on Render and all Express versions
-app.get("/.*/", function (req, res) {
-  res.sendFile(join(clientBuildPath, "index.html"));
-});
 
 app.listen(PORT, () => {
     console.log(`✅ Server running on port ${PORT}`);
