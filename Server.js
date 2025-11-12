@@ -22,11 +22,10 @@ const __dirname = path.dirname(__filename);
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Middlewares
-// app.use(cors({
-//   origin: "http://localhost:5173", // your Vite frontend
-//   credentials: true,               // if using cookies/sessions
-// }));
-app.use(cors());
+app.use(cors({
+  origin: "https://joyspoon.netlify.app", // your Vite frontend
+  credentials: true,               // if using cookies/sessions
+}));
 app.use(express.json());
 app.use("/api/auth",Auth);
 app.use("/api",RestaurantRoutes);
